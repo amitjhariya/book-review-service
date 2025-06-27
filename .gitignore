@@ -1,0 +1,57 @@
+# Node modules
+**/node_modules/
+.pnpm/
+.pnpm-debug.log
+
+# Build output
+**/dist/
+**/build/
+**/.turbo/
+**/.next/
+
+# TypeScript
+**/*.tsbuildinfo
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Env files
+.env
+.env.*.local
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# IDEs and editors
+.vscode/
+.idea/
+*.swp
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Jest cache
+jest.cache/
+**/.jest-cache/
+**/.jest-test-sequencer/
+
+# Docker
+*.local
+docker-compose.override.yml
+
+# Optional lockfiles (if only using pnpm)
+package-lock.json
+yarn.lock
+
+# Misc
+*.tgz
+*.gz
+
+# Generated GraphQL files (if using codegen)
+**/__generated__/
