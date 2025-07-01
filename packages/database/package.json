@@ -1,0 +1,21 @@
+{
+    "name": "@book-review/database",
+    "version": "1.0.0",
+    "description": "Database layer with in-memory storage",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "scripts": {
+        "build": "tsc",
+        "dev": "tsc --watch",
+        "lint": "eslint src --ext .ts",
+        "format": "prettier --write src/**/*.ts"
+    },
+    "dependencies": {
+        "@book-review/shared": "workspace:*",
+        "uuid": "^9.0.1"
+    },
+    "devDependencies": {
+        "@types/uuid": "^9.0.7",
+        "typescript": "^5.3.0"
+    }
+}

@@ -9,5 +9,11 @@
     "forceConsistentCasingInFileNames": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true
-  }
+  },
+  "references": [
+    { "path": "./packages/shared" },
+    { "path": "./packages/database" },
+    { "path": "./packages/queue" },
+    { "path": "./apps/api" }
+  ]
 }

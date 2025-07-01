@@ -1,0 +1,20 @@
+{
+    "name": "@book-review/queue",
+    "version": "1.0.0",
+    "description": "Queue service for background job processing",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "scripts": {
+        "build": "tsc",
+        "dev": "tsc --watch",
+        "lint": "eslint src --ext .ts",
+        "format": "prettier --write src/**/*.ts"
+    },
+    "dependencies": {
+        "@book-review/shared": "workspace:*",
+        "@book-review/database": "workspace:*"
+    },
+    "devDependencies": {
+        "typescript": "^5.3.0"
+    }
+}
