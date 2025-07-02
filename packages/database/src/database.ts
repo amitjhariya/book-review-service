@@ -1,5 +1,5 @@
-import { Book, Review, ReviewInput, Job, JobStatus } from "@book-review/shared";
-import { v4 as uuidv4 } from "uuid";
+import { Book, Review, ReviewInput, Job, JobStatus } from '@book-review/shared';
+import { v4 as uuidv4 } from 'uuid';
 
 export class DatabaseService {
   private books: Map<string, Book> = new Map();
@@ -13,31 +13,30 @@ export class DatabaseService {
   private seedData(): void {
     const books: Book[] = [
       {
-        id: "1",
-        title: "The Great Gatsby",
-        author: "F. Scott Fitzgerald",
-        isbn: "978-0-7432-7356-5",
+        id: '1',
+        title: 'The Great Gatsby',
+        author: 'F. Scott Fitzgerald',
+        isbn: '978-0-7432-7356-5',
         publishedYear: 1925,
-        description: "A classic American novel set in the Jazz Age",
+        description: 'A classic American novel set in the Jazz Age',
         reviews: [],
       },
       {
-        id: "2",
-        title: "To Kill a Mockingbird",
-        author: "Harper Lee",
-        isbn: "978-0-06-112008-4",
+        id: '2',
+        title: 'To Kill a Mockingbird',
+        author: 'Harper Lee',
+        isbn: '978-0-06-112008-4',
         publishedYear: 1960,
-        description:
-          "A gripping tale of racial injustice and childhood innocence",
+        description: 'A gripping tale of racial injustice and childhood innocence',
         reviews: [],
       },
       {
-        id: "3",
-        title: "1984",
-        author: "George Orwell",
-        isbn: "978-0-452-28423-4",
+        id: '3',
+        title: '1984',
+        author: 'George Orwell',
+        isbn: '978-0-452-28423-4',
         publishedYear: 1949,
-        description: "A dystopian social science fiction novel",
+        description: 'A dystopian social science fiction novel',
         reviews: [],
       },
     ];
@@ -48,20 +47,20 @@ export class DatabaseService {
     const initialReviews: Review[] = [
       {
         id: uuidv4(),
-        bookId: "1",
-        reviewerName: "Alice Johnson",
+        bookId: '1',
+        reviewerName: 'Alice Johnson',
         rating: 5,
-        comment: "An absolute masterpiece of American literature.",
-        createdAt: new Date("2024-01-15"),
+        comment: 'An absolute masterpiece of American literature.',
+        createdAt: new Date('2024-01-15'),
         processed: true,
       },
       {
         id: uuidv4(),
-        bookId: "2",
-        reviewerName: "Bob Smith",
+        bookId: '2',
+        reviewerName: 'Bob Smith',
         rating: 4,
-        comment: "Powerful and moving story.",
-        createdAt: new Date("2024-01-20"),
+        comment: 'Powerful and moving story.',
+        createdAt: new Date('2024-01-20'),
         processed: true,
       },
     ];
@@ -105,10 +104,7 @@ export class DatabaseService {
     return review;
   }
 
-  async updateReview(
-    reviewId: string,
-    updates: Partial<Review>
-  ): Promise<Review | null> {
+  async updateReview(reviewId: string, updates: Partial<Review>): Promise<Review | null> {
     const review = this.reviews.get(reviewId);
     if (!review) {
       return null;
@@ -158,9 +154,6 @@ export class DatabaseService {
   }
 
   async getPendingJobs(): Promise<Job[]> {
-    return Array.from(this.jobs.values()).filter(
-      (job) => job.status === JobStatus.PENDING
-    );
+    return Array.from(this.jobs.values()).filter((job) => job.status === JobStatus.PENDING);
   }
 }
-

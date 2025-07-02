@@ -1,8 +1,8 @@
-import { DatabaseService } from "@book-review/database";
-import { QueueService } from "@book-review/queue";
-import { ReviewInput } from "@book-review/shared";
-import { ValidationService } from "../validation/validators";
-import { UserInputError } from "apollo-server-express";
+import { DatabaseService } from '@book-review/database';
+import { QueueService } from '@book-review/queue';
+import { ReviewInput } from '@book-review/shared';
+import { ValidationService } from '../validation/validators';
+import { UserInputError } from 'apollo-server-express';
 
 export interface Context {
   database: DatabaseService;
@@ -15,8 +15,8 @@ export const resolvers = {
       try {
         return await context.database.getBooks();
       } catch (error) {
-        console.error("Error fetching books:", error);
-        throw new Error("Failed to fetch books");
+        console.error('Error fetching books:', error);
+        throw new Error('Failed to fetch books');
       }
     },
 
@@ -24,7 +24,7 @@ export const resolvers = {
       try {
         const bookIdErrors = ValidationService.validateBookId(id);
         if (bookIdErrors.length > 0) {
-          throw new UserInputError("Invalid book ID", {
+          throw new UserInputError('Invalid book ID', {
             validationErrors: bookIdErrors,
           });
         }
@@ -38,8 +38,8 @@ export const resolvers = {
         if (error instanceof UserInputError) {
           throw error;
         }
-        console.error("Error fetching book:", error);
-        throw new Error("Failed to fetch book");
+        console.error('Error fetching book:', error);
+        throw new Error('Failed to fetch book');
       }
     },
   },
@@ -60,7 +60,7 @@ export const resolvers = {
           return {
             success: false,
             review: null,
-            message: `Validation failed: ${allErrors.map((e) => e.message).join(", ")}`,
+            message: `Validation failed: ${allErrors.map((e) => e.message).join(', ')}`,
           };
         }
 
@@ -78,7 +78,7 @@ export const resolvers = {
         const newReview = await context.database.addReview(bookId, review);
 
         // Queue background job to process the review
-        await context.queue.enqueue("process-review", {
+        await context.queue.enqueue('process-review', {
           reviewId: newReview.id,
           bookId: bookId,
         });
@@ -86,14 +86,14 @@ export const resolvers = {
         return {
           success: true,
           review: newReview,
-          message: "Review added successfully and queued for processing",
+          message: 'Review added successfully and queued for processing',
         };
       } catch (error) {
-        console.error("Error adding review:", error);
+        console.error('Error adding review:', error);
         return {
           success: false,
           review: null,
-          message: "Failed to add review",
+          message: 'Failed to add review',
         };
       }
     },

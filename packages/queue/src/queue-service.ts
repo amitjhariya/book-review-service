@@ -1,5 +1,5 @@
-import { Job, JobStatus, JobPayload } from "@book-review/shared";
-import { DatabaseService } from "@book-review/database";
+import { Job, JobStatus, JobPayload } from '@book-review/shared';
+import { DatabaseService } from '@book-review/database';
 
 export interface JobProcessor {
   process(job: Job): Promise<void>;
@@ -26,14 +26,14 @@ export class QueueService {
     }
 
     this.isProcessing = true;
-    console.log("Queue service started");
+    console.log('Queue service started');
 
     while (this.isProcessing) {
       try {
         await this.processPendingJobs();
         await this.sleep(this.pollInterval);
       } catch (error) {
-        console.error("Error processing jobs:", error);
+        console.error('Error processing jobs:', error);
         await this.sleep(this.pollInterval);
       }
     }
@@ -41,7 +41,7 @@ export class QueueService {
 
   stop(): void {
     this.isProcessing = false;
-    console.log("Queue service stopped");
+    console.log('Queue service stopped');
   }
 
   private async processPendingJobs(): Promise<void> {
@@ -82,7 +82,7 @@ export class QueueService {
       console.error(`Job ${job.id} failed:`, error);
       await this.database.updateJob(job.id, {
         status: JobStatus.FAILED,
-        error: error instanceof Error ? error.message : "Unknown error",
+        error: error instanceof Error ? error.message : 'Unknown error',
         processedAt: new Date(),
       });
     }

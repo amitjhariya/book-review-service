@@ -1,2 +1,2 @@
-export * from "./queue-service";
-export * from "./processors/review-processor";
+export * from './queue-service';
+export * from './processors/review-processor';

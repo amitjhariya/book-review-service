@@ -1,9 +1,9 @@
-import { Job, JobPayload } from "@book-review/shared";
-import { DatabaseService } from "@book-review/database";
-import { JobProcessor } from "../queue-service";
+import { Job, JobPayload } from '@book-review/shared';
+import { DatabaseService } from '@book-review/database';
+import { JobProcessor } from '../queue-service';
 
 export class ReviewProcessor implements JobProcessor {
-  private static readonly APPEND_TEXT = " [Verified Review]";
+  private static readonly APPEND_TEXT = ' [Verified Review]';
 
   constructor(private database: DatabaseService) {}
 
@@ -11,7 +11,7 @@ export class ReviewProcessor implements JobProcessor {
     const payload = job.payload as JobPayload;
 
     if (!payload.reviewId) {
-      throw new Error("Review ID is required in job payload");
+      throw new Error('Review ID is required in job payload');
     }
 
     const review = await this.database.getReviewById(payload.reviewId);
